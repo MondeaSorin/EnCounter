@@ -13,5 +13,6 @@ UCLASS()
 class ENCOUNTER_API AEnemy : public ABaseCharacter
 {
 	GENERATED_BODY()
+
 	
 };

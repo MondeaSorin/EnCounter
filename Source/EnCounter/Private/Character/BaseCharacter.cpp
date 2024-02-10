@@ -1,7 +1,7 @@
 // Copyright Mondea Sorin-Gabriel
 
 
-#include "BaseCharacter.h"
+#include "Character/BaseCharacter.h"
 
 ABaseCharacter::ABaseCharacter()
 {

@@ -54,6 +54,9 @@ void AMainPlayerController::Move(const FInputActionValue& InputActionValue)
 	const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
+	// Print the values of InputAxisVector.Y and InputAxisVector.X to the console -- DEGUBGING
+	//UE_LOG(LogTemp, Warning, TEXT("InputAxisVector.Y: %f, InputAxisVector.X: %f"), InputAxisVector.Y, InputAxisVector.X);
+
 	if (APawn* ControlledPawn = GetPawn<APawn>())
 	{
 		ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);

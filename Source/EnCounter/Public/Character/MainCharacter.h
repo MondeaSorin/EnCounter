@@ -13,5 +13,6 @@ UCLASS()
 class ENCOUNTER_API AMainCharacter : public ABaseCharacter
 {
 	GENERATED_BODY()
-	
+public:
+	AMainCharacter();	
 };

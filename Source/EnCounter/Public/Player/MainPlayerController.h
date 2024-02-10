@@ -11,6 +11,8 @@
  */
 
 class UInputMappingContext;
+class UInputAction;
+struct FInputActionValue;
 
 UCLASS()
 class ENCOUNTER_API AMainPlayerController : public APlayerController
@@ -21,8 +23,16 @@ public:
 	
 protected:
 	virtual void BeginPlay() override;
+	virtual void SetupInputComponent() override;
 
 private:
-	UPROPERTY()
+	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputMappingContext> MainContext;
+
+	UPROPERTY(EditAnywhere, Category = "Input")
+	TObjectPtr<UInputAction> MoveAction;
+
+	
+	UFUNCTION()
+	void Move(const struct FInputActionValue& InputActionValue);
 };

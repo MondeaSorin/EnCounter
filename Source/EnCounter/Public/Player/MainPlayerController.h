@@ -9,9 +9,20 @@
 /**
  * 
  */
+
+class UInputMappingContext;
+
 UCLASS()
 class ENCOUNTER_API AMainPlayerController : public APlayerController
 {
 	GENERATED_BODY()
+public:
+	AMainPlayerController();
 	
+protected:
+	virtual void BeginPlay() override;
+
+private:
+	UPROPERTY()
+	TObjectPtr<UInputMappingContext> MainContext;
 };

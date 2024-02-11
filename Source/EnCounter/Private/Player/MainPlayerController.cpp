@@ -5,10 +5,18 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "InputActionValue.h"
+#include "Interaction/EnemyInterface.h"
 
 AMainPlayerController::AMainPlayerController()
 {
 	bReplicates = true;
+}
+
+void AMainPlayerController::PlayerTick(float DeltaTime)
+{
+	Super::PlayerTick(DeltaTime);
+
+	CursorTrace();
 }
 
 void AMainPlayerController::BeginPlay()
@@ -63,4 +71,63 @@ void AMainPlayerController::Move(const FInputActionValue& InputActionValue)
 		ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
 	}
 	
+}
+
+void AMainPlayerController::CursorTrace()
+{
+	FHitResult CursorHit;
+	GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+	if (!CursorHit.bBlockingHit) return;
+
+	LastActor = ThisActor;
+	ThisActor = Cast<IEnemyInterface>(CursorHit.GetActor());
+
+	/**
+	 * Line trace from cursor. There are several scenarios:
+	 * A. LastActor is null && ThisActor is null
+	 *		- Do nothing.
+	 * B. LastActor is null && ThisActor valid
+	 *		- Call HighlightActor on ThisActor.
+	 * C. LastActor valid && ThisActor is null
+	 *		 - Call UnhighlightActor on LastActor.
+	 * D. LastActor valid && ThisActor valid
+	 *		 - If LastActor is different from ThisActor, call UnhighlightActor on LastActor and HighlightActor on ThisActor.
+	 *		 - If LastActor is the same as ThisActor, do nothing.
+	 */
+
+	if (LastActor == nullptr)
+	{
+		if (ThisActor != nullptr)
+		{
+			// Case B
+			ThisActor->HighlightActor();
+		}
+		else
+		{
+			// Case A
+			// Do nothing
+		}
+	}
+	else
+	{
+		if (ThisActor == nullptr)
+		{
+			// Case C
+			LastActor->UnhighlightActor();
+		}
+		else
+		{
+			if (LastActor != ThisActor)
+			{
+				// Case D - different actors
+				LastActor->UnhighlightActor();
+				ThisActor->HighlightActor();
+			}
+			else
+			{
+				// Case D - both are the same
+				// Do nothing
+			}
+		}
+	}
 }

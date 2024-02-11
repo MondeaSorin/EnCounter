@@ -10,6 +10,8 @@
 AMainPlayerController::AMainPlayerController()
 {
 	bReplicates = true;
+	LastActor = nullptr;
+	ThisActor = nullptr;
 }
 
 void AMainPlayerController::PlayerTick(float DeltaTime)

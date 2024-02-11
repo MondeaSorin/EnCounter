@@ -34,7 +34,7 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Input")
 	TObjectPtr<UInputAction> MoveAction;
 	
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable)
 	void Move(const struct FInputActionValue& InputActionValue);
 
 	void CursorTrace();

@@ -14,7 +14,7 @@ ABaseCharacter::ABaseCharacter()
 }
 
 TObjectPtr<USkeletalMeshComponent> ABaseCharacter::GetWeaponMesh() const
-{
+{ 
 	return Weapon;
 }
 

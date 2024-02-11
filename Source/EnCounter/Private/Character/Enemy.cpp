@@ -3,26 +3,32 @@
 
 #include "Character/Enemy.h"
 
+AEnemy::AEnemy()
+{
+	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+}
+
 void AEnemy::HighlightActor()
 {
 	// highlights the actor
 
-	if (UPrimitiveComponent* PrimitiveComponent = Cast<UPrimitiveComponent>(GetRootComponent()))
-	{
-		PrimitiveComponent->SetRenderCustomDepth(true);
-	}
-	
-	UE_LOG(LogTemp, Warning, TEXT("HighlightActor"));
+	GetMesh()->SetRenderCustomDepth(true);
+	GetMesh()->SetCustomDepthStencilValue(250);
+
+	GetWeaponMesh()->SetRenderCustomDepth(true);
+	GetWeaponMesh()->SetCustomDepthStencilValue(250);
+
+	// debug line
+	// UE_LOG(LogTemp, Warning, TEXT("HighlightActor"));
 
 }
 
 void AEnemy::UnhighlightActor()
 {
-	if (UPrimitiveComponent* PrimitiveComponent = Cast<UPrimitiveComponent>(GetRootComponent()))
-	{
-		PrimitiveComponent->SetRenderCustomDepth(false);
-	}
+	GetMesh()->SetRenderCustomDepth(false);
+	GetWeaponMesh()->SetRenderCustomDepth(false);
 	
-	UE_LOG(LogTemp, Warning, TEXT("UnhighlightActor"));
+	// debug line
+	//UE_LOG(LogTemp, Warning, TEXT("UnhighlightActor"));
 	
 }

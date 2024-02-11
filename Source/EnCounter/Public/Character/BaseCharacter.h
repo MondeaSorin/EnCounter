@@ -13,6 +13,8 @@ class ENCOUNTER_API ABaseCharacter : public ACharacter
 
 public:
 	ABaseCharacter();
+	
+	TObjectPtr<USkeletalMeshComponent> GetWeaponMesh() const;
 
 protected:
 	virtual void BeginPlay() override;

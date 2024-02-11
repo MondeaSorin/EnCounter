@@ -15,6 +15,8 @@ class ENCOUNTER_API AEnemy : public ABaseCharacter, public IEnemyInterface
 {
 	GENERATED_BODY()
 
+	AEnemy();
+	
 	virtual void HighlightActor() override;
 	virtual void UnhighlightActor() override;
 	

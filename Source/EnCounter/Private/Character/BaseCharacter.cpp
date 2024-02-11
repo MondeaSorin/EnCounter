@@ -13,6 +13,11 @@ ABaseCharacter::ABaseCharacter()
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
+TObjectPtr<USkeletalMeshComponent> ABaseCharacter::GetWeaponMesh() const
+{
+	return Weapon;
+}
+
 void ABaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();

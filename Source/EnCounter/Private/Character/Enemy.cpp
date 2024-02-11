@@ -3,9 +3,19 @@
 
 #include "Character/Enemy.h"
 
+#include "AbilitySystem/EncounterAbilitySystemComponent.h"
+#include "AbilitySystem/EncounterAttributeSet.h"
+
 AEnemy::AEnemy()
 {
 	GetMesh()->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
+
+	AbilitySystemComponent = CreateDefaultSubobject<UEncounterAbilitySystemComponent>("AbilitySystemComponent");
+	AbilitySystemComponent->SetIsReplicated(true);
+
+	AttributeSet = CreateDefaultSubobject<UEncounterAttributeSet>("AttributeSet");
+	// AttributeSet->SetIsReplicated(true);
+	
 }
 
 void AEnemy::HighlightActor()

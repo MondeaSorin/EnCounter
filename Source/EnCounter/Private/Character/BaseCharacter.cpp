@@ -18,6 +18,11 @@ TObjectPtr<USkeletalMeshComponent> ABaseCharacter::GetWeaponMesh() const
 	return Weapon;
 }
 
+UAbilitySystemComponent* ABaseCharacter::GetAbilitySystemComponent() const
+{
+	return AbilitySystemComponent;
+}
+
 void ABaseCharacter::BeginPlay()
 {
 	Super::BeginPlay();

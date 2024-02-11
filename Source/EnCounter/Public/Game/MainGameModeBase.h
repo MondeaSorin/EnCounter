@@ -13,5 +13,6 @@ UCLASS()
 class ENCOUNTER_API AMainGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+	// In a multiplayer context, the game mode exists only on the server.
 	
 };

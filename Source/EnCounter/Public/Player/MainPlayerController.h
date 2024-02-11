@@ -20,6 +20,8 @@ class ENCOUNTER_API AMainPlayerController : public APlayerController
 {
 	GENERATED_BODY()
 public:
+	// Player Controller exists both on the server and the client.
+	// The server contains all the player controllers, while the client contains only the player controller for the local player.
 	AMainPlayerController();
 	virtual void PlayerTick(float DeltaTime) override;
 	

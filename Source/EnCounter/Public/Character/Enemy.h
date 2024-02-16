@@ -15,9 +15,14 @@ class ENCOUNTER_API AEnemy : public ABaseCharacter, public IEnemyInterface
 {
 	GENERATED_BODY()
 
+public:
 	AEnemy();
-	
+
+#pragma region EnemyInterface
 	virtual void HighlightActor() override;
 	virtual void UnhighlightActor() override;
+#pragma endregion
 	
+protected:
+	virtual void BeginPlay() override;
 };

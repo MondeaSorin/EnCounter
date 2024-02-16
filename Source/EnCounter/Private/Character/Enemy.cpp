@@ -43,3 +43,10 @@ void AEnemy::UnhighlightActor()
 	//UE_LOG(LogTemp, Warning, TEXT("UnhighlightActor"));
 	
 }
+
+void AEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	//check(AbilitySystemComponent);
+	AbilitySystemComponent->InitAbilityActorInfo(this, this);
+}

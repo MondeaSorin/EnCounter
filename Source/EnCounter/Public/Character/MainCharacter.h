@@ -14,5 +14,12 @@ class ENCOUNTER_API AMainCharacter : public ABaseCharacter
 {
 	GENERATED_BODY()
 public:
-	AMainCharacter();	
+	AMainCharacter();
+
+protected:
+	virtual void PossessedBy(AController* NewController) override;
+	virtual void OnRep_PlayerState() override;
+
+private:
+	void InitAbilityActorInfo();
 };

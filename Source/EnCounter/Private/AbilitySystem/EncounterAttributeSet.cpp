@@ -3,12 +3,14 @@
 
 #include "AbilitySystem/EncounterAttributeSet.h"
 
-#include "AbilitySystemComponent.h"
 #include "Net/UnrealNetwork.h"
 
 UEncounterAttributeSet::UEncounterAttributeSet()
 {
-	
+	InitHealth(100.f);
+	InitMaxHealth(100.f);
+	InitMana(50.f);
+	InitMaxMana(50.f);
 }
 
 void UEncounterAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const

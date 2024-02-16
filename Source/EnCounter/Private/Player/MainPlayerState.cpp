@@ -12,6 +12,7 @@ AMainPlayerState::AMainPlayerState()
 
 	AbilitySystemComponent = CreateDefaultSubobject<UEncounterAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
 
 	AttributeSet = CreateDefaultSubobject<UEncounterAttributeSet>("AttributeSet");
 }

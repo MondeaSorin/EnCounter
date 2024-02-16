@@ -12,6 +12,7 @@ AEnemy::AEnemy()
 
 	AbilitySystemComponent = CreateDefaultSubobject<UEncounterAbilitySystemComponent>("AbilitySystemComponent");
 	AbilitySystemComponent->SetIsReplicated(true);
+	AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 
 	AttributeSet = CreateDefaultSubobject<UEncounterAttributeSet>("AttributeSet");
 	// AttributeSet->SetIsReplicated(true);

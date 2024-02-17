@@ -1,4 +1,4 @@
-// Copyright Mondea Sorin-Gabriel
+ // Copyright Mondea Sorin-Gabriel
 
 
 #include "UI/HUD/EncounterHUD.h"
@@ -30,6 +30,6 @@ void AEncounterHUD::InitOverlay(APlayerController* PC, APlayerState* PS, UAbilit
 	UOverlayWidgetController* Controller = GetOverlayWidgetController(WCParams);
 
 	OverlayWidget->SetWidgetController(Controller);
-	
+	Controller->BroadcastInitialValues();
 	Widget->AddToViewport();
 }

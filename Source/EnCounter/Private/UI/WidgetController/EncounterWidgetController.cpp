@@ -10,3 +10,8 @@ void UEncounterWidgetController::SetWidgetControllerParams(const FWidgetControll
 	AbilitySystemComponent = InWidgetControllerParams.AbilitySystemComponent;
 	AttributeSet = InWidgetControllerParams.AttributeSet;
 }
+
+void UEncounterWidgetController::BroadcastInitialValues()
+{
+	
+}

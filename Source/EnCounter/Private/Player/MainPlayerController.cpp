@@ -28,9 +28,12 @@ void AMainPlayerController::BeginPlay()
 
 	// subsystems are singletons, enhanced input local player subsystem is what we can use to add mapping contexts
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(GetLocalPlayer());
-	check(Subsystem);
+
+	if (Subsystem) // we did not use assertion because we want it to work for multiplayer
+	{
+		Subsystem->AddMappingContext(MainContext, 0);
+	}
 	// the difference between check and normal if statement is that check will crash the game if the condition is not met
-	Subsystem->AddMappingContext(MainContext, 0);
 
 	bShowMouseCursor = true;
 	DefaultMouseCursor = EMouseCursor::Default;

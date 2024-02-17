@@ -5,7 +5,9 @@
 
 #include "AbilitySystem/EncounterAbilitySystemComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "Player/MainPlayerController.h"
 #include "Player/MainPlayerState.h"
+#include "UI/HUD/EncounterHUD.h"
 
 AMainCharacter::AMainCharacter()
 {
@@ -36,10 +38,17 @@ void AMainCharacter::OnRep_PlayerState()
 
 void AMainCharacter::InitAbilityActorInfo()
 {
-	if (AMainPlayerState* PS = GetPlayerState<AMainPlayerState>())
+	AMainPlayerState* PS = GetPlayerState<AMainPlayerState>();
+	check(PS);
+	PS->GetAbilitySystemComponent()->InitAbilityActorInfo(PS, this);
+	AbilitySystemComponent = PS->GetAbilitySystemComponent();
+	AttributeSet = PS->GetAttributeSet();
+
+	if (AMainPlayerController* MPC = Cast<AMainPlayerController>(GetController()))
 	{
-		PS->GetAbilitySystemComponent()->InitAbilityActorInfo(PS, this);
-		AbilitySystemComponent = PS->GetAbilitySystemComponent();
-		AttributeSet = PS->GetAttributeSet();
+		if (AEncounterHUD* EncounterHUD = Cast<AEncounterHUD>(MPC->GetHUD()))
+		{
+			EncounterHUD->InitOverlay(MPC, PS, AbilitySystemComponent, AttributeSet);
+		}
 	}
 }

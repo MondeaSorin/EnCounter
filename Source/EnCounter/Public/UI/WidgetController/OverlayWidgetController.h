@@ -6,6 +6,7 @@
 #include "UI/WidgetController/EncounterWidgetController.h"
 #include "OverlayWidgetController.generated.h"
 
+struct FOnAttributeChangeData;
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnHealthChangedSignature, float, NewHealth);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnMaxHealthChangedSignature, float, NewMaxHealth);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnManaChangedSignature, float, NewMana);
@@ -21,7 +22,8 @@ class ENCOUNTER_API UOverlayWidgetController : public UEncounterWidgetController
 
 public:
 	virtual void BroadcastInitialValues() override;
-
+	virtual void BindCallbacksToDependencies() override;
+	
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
 	FOnHealthChangedSignature OnHealthChanged;
 
@@ -29,9 +31,15 @@ public:
 	FOnMaxHealthChangedSignature OnMaxHealthChanged;
 
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
-	FOnManaChangedSignature ManaChanged;
-
+	FOnManaChangedSignature OnManaChanged;
+	
 	UPROPERTY(BlueprintAssignable, Category = "GAS|Attributes")
 	FOnMaxManaChangedSignature OnMaxManaChanged;
 
+protected:
+	void HealthChanged(const FOnAttributeChangeData& Data);
+	void MaxHealthChanged(const FOnAttributeChangeData& Data);
+	void ManaChanged(const FOnAttributeChangeData& Data);
+	void MaxManaChanged(const FOnAttributeChangeData& Data);
+	
 };

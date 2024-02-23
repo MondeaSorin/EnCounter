@@ -30,6 +30,7 @@ void AEncounterEffectActor::OnOverlapBegin(UPrimitiveComponent* OverlappedCompon
 		// bad practice, but we don't have a gameplay effect yet
 		UEncounterAttributeSet* EncounterAttributeSetNonConst = const_cast<UEncounterAttributeSet*>(EncounterAttributeSet);
 		EncounterAttributeSetNonConst->SetHealth(EncounterAttributeSet->GetHealth() - 10.f);
+		EncounterAttributeSetNonConst->SetMana(EncounterAttributeSet->GetMana() - 10.f);
 		Destroy();
 	}
 }

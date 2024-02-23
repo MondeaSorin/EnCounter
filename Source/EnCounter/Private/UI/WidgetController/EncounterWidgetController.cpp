@@ -15,3 +15,8 @@ void UEncounterWidgetController::BroadcastInitialValues()
 {
 	
 }
+
+void UEncounterWidgetController::BindCallbacksToDependencies()
+{
+	
+}
